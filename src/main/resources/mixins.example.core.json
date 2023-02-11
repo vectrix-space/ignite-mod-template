@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.example.mixin.core",
+  "plugin": "com.example.mixin.plugins.CorePlugin",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8",
+  "server": [
+    "MixinCraftServer",
+    "MixinSimpleCommandMap"
+  ]
+}

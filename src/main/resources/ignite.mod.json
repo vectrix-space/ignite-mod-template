@@ -1,0 +1,11 @@
+{
+  "id": "example",
+  "version": "1.0.0",
+  "entry": "com.example.ExampleMod",
+  "dependencies": [
+    "ignite"
+  ],
+  "mixins": [
+    "mixins.example.core.json"
+  ]
+}

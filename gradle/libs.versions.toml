@@ -1,0 +1,13 @@
+metadata.format.version = "1.1"
+
+[versions]
+
+ignite = "0.8.0"
+mixin = "0.8.5"
+
+[libraries]
+
+ignite = { group = "space.vectrix.ignite", name = "ignite-api", version.ref = "ignite" }
+mixin = { group = "org.spongepowered", name = "mixin", version.ref = "mixin" }
+
+
