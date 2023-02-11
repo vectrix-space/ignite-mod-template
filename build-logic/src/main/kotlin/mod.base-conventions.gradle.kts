@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
   id("net.kyori.indra")
-  id("net.kyori.indra.publishing")
+  id("net.kyori.indra.licenser.spotless")
 
   id("com.github.johnrengelman.shadow")
   id("io.papermc.paperweight.userdev")
@@ -33,6 +33,8 @@ indra {
   javaVersions {
     target(17)
   }
+
+  mitLicense()
 }
 
 val jar = tasks.named<Jar>("jar")
