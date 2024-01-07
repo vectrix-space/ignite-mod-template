@@ -1,13 +1,10 @@
 plugins {
-    id("mod.base-conventions")
+  id("mod.base-conventions")
 }
 
-group = "com.example"
-version = "1.0.0-SNAPSHOT"
-
 dependencies {
-    implementation(libs.ignite)
-    implementation(libs.mixin)
+  compileOnly(libs.ignite)
+  compileOnly(libs.mixin)
 
-    paperweight.paperDevBundle("1.19.3-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle(libs.versions.paper)
 }

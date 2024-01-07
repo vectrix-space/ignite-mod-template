@@ -2,17 +2,27 @@ plugins {
   `kotlin-dsl`
 }
 
-repositories {
-  gradlePluginPortal()
-  maven {
-    url = uri("https://repo.papermc.io/repository/maven-public/")
-  }
+dependencies {
+  implementation(libs.build.paperweight)
+  implementation(libs.build.shadow)
+  implementation(libs.build.spotless)
 }
 
 dependencies {
-  val indraVersion = "3.0.1"
-  implementation("net.kyori", "indra-common", indraVersion)
-  implementation("net.kyori", "indra-licenser-spotless", indraVersion)
-  implementation("gradle.plugin.com.github.johnrengelman", "shadow", "7.1.2")
-  implementation("io.papermc.paperweight.userdev", "io.papermc.paperweight.userdev.gradle.plugin", "1.5.0")
+  compileOnly(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
+kotlin {
+  target {
+    compilations.configureEach {
+      kotlinOptions {
+        jvmTarget = "11"
+      }
+    }
+  }
 }

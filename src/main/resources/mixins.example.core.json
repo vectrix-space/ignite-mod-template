@@ -4,7 +4,7 @@
   "package": "com.example.mixin.core",
   "plugin": "com.example.mixin.plugins.CorePlugin",
   "target": "@env(DEFAULT)",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "server": [
     "MixinCraftServer",
     "MixinSimpleCommandMap"

@@ -1,60 +1,87 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.diffplug.gradle.spotless.FormatExtension
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.util.regex.Pattern
+import java.util.stream.Collectors
 
 plugins {
-  id("net.kyori.indra")
-  id("net.kyori.indra.licenser.spotless")
+  `java-library`
+  id("com.diffplug.spotless")
 
   id("com.github.johnrengelman.shadow")
   id("io.papermc.paperweight.userdev")
 }
 
-configurations {
-  val shadeApi = create("shadeApi")
-  val shadeImplementation = create("shadeImplementation")
+// Expose version catalog
+val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
 
-  api { extendsFrom(shadeApi) }
-  implementation { extendsFrom(shadeImplementation) }
+java {
+  javaTarget(17)
+  withSourcesJar()
 }
 
 repositories {
   mavenCentral()
-  maven {
-    url = uri("https://oss.sonatype.org/content/groups/public/")
-  }
-  maven {
-    url = uri("https://repo.papermc.io/repository/maven-public/")
-  }
-  maven {
-    url = uri("https://repo.spongepowered.org/maven/")
-  }
+  maven("https://oss.sonatype.org/content/groups/public/")
+  maven("https://repo.papermc.io/repository/maven-public/")
+  maven("https://repo.spongepowered.org/maven/")
 }
 
-indra {
-  javaVersions {
-    target(17)
-  }
-
-  mitLicense()
+dependencies {
+  compileOnlyApi(libs.jetbrains.annotations)
 }
 
-val jar = tasks.named<Jar>("jar")
+spotless {
+  fun FormatExtension.applyCommon() {
+    trimTrailingWhitespace()
+    endWithNewline()
+    indentWithSpaces(2)
+  }
 
-val shadowJar = tasks.named<ShadowJar>("shadowJar") {
-  configurations = listOf(project.configurations.named("shadeApi").get(), project.configurations.named("shadeImplementation").get())
+  fun formatLicense(): String {
+    val splitPattern = Pattern.compile("\r?\n")
+    val lineSeparator = System.lineSeparator()
+    val headerPrefix = "/*$lineSeparator"
+    val linePrefix = " * "
+    val headerSuffix = "$lineSeparator */"
 
-  from(jar)
+    val headerText = String(Files.readAllBytes(rootProject.file("license_header.txt").toPath()), StandardCharsets.UTF_8)
+
+    return splitPattern.splitAsStream(headerText)
+      .map {
+        StringBuilder(it.length + 4)
+          .append(linePrefix)
+          .append(it)
+          .toString()
+      }
+      .collect(Collectors.joining(
+        lineSeparator,
+        headerPrefix,
+        headerSuffix
+      ))
+  }
+
+
+  java {
+    licenseHeader(formatLicense())
+    applyCommon()
+  }
+
+  kotlin {
+    applyCommon()
+  }
 }
 
 tasks {
-  build {
-    dependsOn(reobfJar)
+  jar {
+    archiveClassifier.set("dev")
   }
 
   reobfJar {
     remapperArgs.add("--mixin")
   }
-}
 
-artifacts {
-  archives(shadowJar)
+  build {
+    dependsOn(reobfJar)
+  }
 }

@@ -1,13 +1,15 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-enableFeaturePreview("VERSION_CATALOGS")
-
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven("https://repo.papermc.io/repository/maven-public/")
-    }
+  includeBuild("build-logic")
+  repositories {
+    gradlePluginPortal()
+    maven("https://repo.papermc.io/repository/maven-public/")
+  }
 }
 
-rootProject.name = "ignite-mod-template"
+plugins {
+  id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
+}
 
-includeBuild("build-logic")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "ignite-mod-template"
