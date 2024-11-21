@@ -1,4 +1,8 @@
 import com.diffplug.gradle.spotless.FormatExtension
+import gradle.kotlin.dsl.accessors._43f5a8ee9331a3869a213f1d800d4801.compileOnlyApi
+import gradle.kotlin.dsl.accessors._43f5a8ee9331a3869a213f1d800d4801.java
+import gradle.kotlin.dsl.accessors._43f5a8ee9331a3869a213f1d800d4801.reobfJar
+import gradle.kotlin.dsl.accessors._43f5a8ee9331a3869a213f1d800d4801.spotless
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.util.regex.Pattern
@@ -16,7 +20,7 @@ plugins {
 val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
 
 java {
-  javaTarget(17)
+  javaTarget(21)
   withSourcesJar()
 }
 

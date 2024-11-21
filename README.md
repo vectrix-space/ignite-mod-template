@@ -2,4 +2,4 @@ Ignite Mod Template [![Discord](https://img.shields.io/discord/81952297758634805
 ===================
 
 A template for creating an [Ignite](https://github.com/vectrix-space/ignite) 
-mod for [Paper](https://papermc.io/) 1.20.4.
+mod for [Paper](https://papermc.io/) 1.21.1.
