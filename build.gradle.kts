@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-  remapper("net.fabricmc:tiny-remapper:0.10.1:fat")
+  remapper("net.fabricmc:tiny-remapper:0.10.4:fat")
 
   compileOnly(libs.ignite)
   compileOnly(libs.mixin)
