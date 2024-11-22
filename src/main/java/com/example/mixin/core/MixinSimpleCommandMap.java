@@ -39,6 +39,6 @@ public abstract class MixinSimpleCommandMap {
 
   @Inject(method = "setDefaultCommands()V", at = @At("TAIL"), remap = false)
   public void registerOwnCommands(CallbackInfo callback) {
-    this.register("example", new HelloCommand("hello"));
+    this.register("bukkit", new HelloCommand("hello"));
   }
 }

@@ -16,7 +16,7 @@ plugins {
 val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
 
 java {
-  javaTarget(17)
+  javaTarget(21)
   withSourcesJar()
 }
 
@@ -26,6 +26,11 @@ repositories {
   maven("https://repo.papermc.io/repository/maven-public/")
   maven("https://repo.spongepowered.org/maven/")
 }
+
+// **
+// Paper Only
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
+// **
 
 dependencies {
   compileOnlyApi(libs.jetbrains.annotations)
@@ -77,11 +82,25 @@ tasks {
     archiveClassifier.set("dev")
   }
 
-  reobfJar {
-    remapperArgs.add("--mixin")
+  // **
+  // Paper Only
+  shadowJar {
+    archiveClassifier.set("")
   }
 
   build {
-    dependsOn(reobfJar)
+    dependsOn(shadowJar)
   }
+  // **
+
+  // **
+  // Spigot Compatibility
+  //reobfJar {
+  //  remapperArgs.add("--mixin")
+  //}
+  //
+  //build {
+  //  dependsOn(reobfJar)
+  //}
+  // **
 }
