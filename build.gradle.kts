@@ -3,11 +3,11 @@ plugins {
 }
 
 dependencies {
-  remapper("net.fabricmc:tiny-remapper:0.10.4:fat")
+  paperweight.paperDevBundle(libs.versions.paper)
 
   compileOnly(libs.ignite)
   compileOnly(libs.mixin)
   compileOnly(libs.mixinExtras)
 
-  paperweight.paperDevBundle(libs.versions.paper)
+  annotationProcessor(libs.mixinExtras)
 }
