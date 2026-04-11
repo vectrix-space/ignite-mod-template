@@ -5,7 +5,7 @@ metadata.format.version = "1.1"
 paper = "1.21.10-R0.1-SNAPSHOT"
 
 [libraries]
-ignite = { group = "space.vectrix.ignite", name = "ignite-api", version = "1.1.0" }
+ignite = { group = "space.vectrix.ignite", name = "ignite-api", version = "1.2.1" }
 mixin = { group = "org.spongepowered", name = "mixin", version = "0.8.7" }
 mixinExtras = { group = "io.github.llamalad7", name = "mixinextras-common", version = "0.5.2" }
 
