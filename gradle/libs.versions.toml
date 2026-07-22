@@ -10,4 +10,4 @@ mixin = { group = "org.spongepowered", name = "mixin", version = "0.8.7" }
 mixinExtras = { group = "io.github.llamalad7", name = "mixinextras-common", version = "0.5.2" }
 
 build-paperweight = { module = "io.papermc.paperweight.userdev:io.papermc.paperweight.userdev.gradle.plugin", version = "2.0.0-SNAPSHOT" }
-build-shadow = { module = "com.gradleup.shadow:com.gradleup.shadow.gradle.plugin", version = "9.2.2" }
+build-shadow = { module = "com.gradleup.shadow:com.gradleup.shadow.gradle.plugin", version = "9.6.1" }
